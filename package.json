@@ -11,6 +11,7 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "chalk": "^5.0.0"
+        "chalk": "^5.0.0",
+        "nodemodule": "^0.3.0"
     }
 }

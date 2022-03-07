@@ -2,11 +2,13 @@
     "name": "lib-markdown",
     "version": "1.0.0",
     "main": "index.js",
-    "type": "module",
+
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cli": "node cli.js ./arquivos/texto1.md"
     },
     "keywords": [],
+    "type": "module",
     "author": "",
     "license": "ISC",
     "description": "",

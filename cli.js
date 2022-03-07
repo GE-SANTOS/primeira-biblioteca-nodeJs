@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import pegaArquivo from '../index.js';
+import { pegaArquivo } from './index.js';
 
 const caminho = process.argv;
 

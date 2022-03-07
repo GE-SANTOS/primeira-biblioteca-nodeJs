@@ -1,34 +1,6 @@
 import chalk from "chalk"; // precisa ser instalada pq foi desenvolvido por terceiros
 import fs from "fs"; // biblioteca nativa
 
-
-function extraiLinks(texto) {
-    const regex = /\[([^\]]*)\]\((https?:\/\/[^s#\s].[^\s]*)\)/gm;
-    const arrayResultados = [];
-    let temp;
-    while ((temp = regex.exec(texto)) !== null) {
-        arrayResultados.push({
-            [temp[1]]: temp[2]
-        })
-    }
-    return arrayResultados;
-}
-
-//async/await
-function trataErro(erro) {
-    throw new Error(chalk.red(erro.code, 'Não ha arquivo no caminho'));
-}
-
-async function pegaArquivo(caminhoDoArquivo) {
-    const encoding = 'utf-8';
-    try {
-        const texto = await fs.promises.readFile(caminhoDoArquivo, encoding)
-        console.log(extraiLinks(texto));
-    } catch (erro) {
-        trataErro(erro);
-    }
-}
-
 //fiinaly
 // async function pegaArquivo(caminhoDoArquivo) {
 //     const encoding = 'utf-8';
@@ -59,6 +31,34 @@ async function pegaArquivo(caminhoDoArquivo) {
 //         console.log(chalk.green(texto));
 //     })
 // }
+
+//regex
+function extraiLinks(texto) {
+    const regex = /\[([^\]]*)\]\((https?:\/\/[^s#\s].[^\s]*)\)/gm;
+    const arrayResultados = [];
+    let temp;
+    while ((temp = regex.exec(texto)) !== null) {
+        arrayResultados.push({
+            [temp[1]]: temp[2]
+        })
+    }
+    return arrayResultados.length === 0 ? 'não há links' : arrayResultados;
+}
+
+// async / await
+function trataErro(erro) {
+    throw new Error(chalk.red(erro.code, 'Não ha arquivo no caminho'));
+}
+
+async function pegaArquivo(caminhoDoArquivo) {
+    const encoding = 'utf-8';
+    try {
+        const texto = await fs.promises.readFile(caminhoDoArquivo, encoding)
+        console.log(extraiLinks(texto));
+    } catch (erro) {
+        trataErro(erro);
+    }
+}
 
 // pegaArquivo('./arquivos/texto1.md');
 
